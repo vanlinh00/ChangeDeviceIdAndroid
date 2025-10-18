@@ -14,26 +14,37 @@ import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String PREFS_NAME = "RRSAppPrefs";
-    private static final String KEY_DEVICE_ID = "device_id";
-    private static final String KEY_SAVED_DATA = "saved_data";
-
     private TextView  tvStatus;
     private Button btnbtnCheckPermissionID, btnChangeSystemAndroidID, btnRealDeviceID;
+    private Button btnReSaveRealDeviceID;
 
-    private String currentFakeDeviceID = "";
+    private static final String PREFS_NAME = "app_prefs";
+    private static final String KEY_REAL_DEVICE_ID = "real_device_id";
+
+    private SharedPreferences sharedPreferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Ánh xạ view
         tvStatus = findViewById(R.id.tvStatus);
         btnbtnCheckPermissionID = findViewById(R.id.btnCheckPermissionID);
         btnChangeSystemAndroidID = findViewById(R.id.btnChangeSystemID);
 
         btnRealDeviceID = findViewById(R.id.btnRealDeviceID);
+        btnReSaveRealDeviceID = findViewById(R.id.btnReSaveRealDeviceID);
+        sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+
+        if (!sharedPreferences.contains(KEY_REAL_DEVICE_ID)) {
+            String realDeviceId = getRealAndroidID();
+            sharedPreferences.edit().putString(KEY_REAL_DEVICE_ID, realDeviceId).apply();
+            tvStatus.setText("Lần đầu lưu Real Android ID: " + realDeviceId);
+        } else {
+            String savedId = sharedPreferences.getString(KEY_REAL_DEVICE_ID, "");
+            tvStatus.setText("Real Android ID đã lưu: " + savedId);
+        }
 
 
 
@@ -59,6 +70,15 @@ public class MainActivity extends AppCompatActivity {
                 tvStatus.setText("Real Android ID: " + realDeviceID);
             }
         });
+
+        btnReSaveRealDeviceID.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String savedAndroidID = sharedPreferences.getString(KEY_REAL_DEVICE_ID, "Chưa có Android ID nào được lưu");
+                tvStatus.setText("Android ID thực đã lưu: " + savedAndroidID);
+                Toast.makeText(MainActivity.this, "Đã hiển thị Real Android ID đã lưu.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
@@ -66,25 +86,6 @@ public class MainActivity extends AppCompatActivity {
         return UUID.randomUUID().toString();
     }
 
-
-
-    private void saveAppData() {
-        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        prefs.edit().putString(KEY_SAVED_DATA, "Dữ liệu quan trọng của app, session game...").apply();
-        tvStatus.setText("Đã lưu dữ liệu App!");
-    }
-
-    private void restoreAppData() {
-        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        String savedData = prefs.getString(KEY_SAVED_DATA, null);
-        if (savedData != null) {
-            tvStatus.setText("Phục hồi dữ liệu thành công: " + savedData);
-        } else {
-            tvStatus.setText("Không có dữ liệu lưu để phục hồi.");
-        }
-
-
-    }
 
 
     private boolean runRootCommand(String command) {

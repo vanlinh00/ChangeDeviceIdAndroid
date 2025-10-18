@@ -37,6 +37,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnChangeSystemID"
         android:layout_marginTop="16dp"/>
+    <Button
+        android:id="@+id/btnReSaveRealDeviceID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Re-save Real Device ID"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnRealDeviceID"
+        android:layout_marginTop="16dp"/>
 
     <TextView
         android:id="@+id/tvStatus"
@@ -47,7 +56,7 @@
         android:textSize="16sp"
         android:gravity="center"
         android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@id/btnRealDeviceID"
+        app:layout_constraintTop_toBottomOf="@id/btnReSaveRealDeviceID"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
