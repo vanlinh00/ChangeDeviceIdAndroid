@@ -1,66 +1,40 @@
-# 🚀 Firebase Cloud Messaging (FCM) Service with Spring Boot
+# 🚀 Project Name - Spring Boot Backend
 
-Dự án này là một giải pháp hoàn chỉnh triển khai dịch vụ Gửi thông báo đẩy (Push Notification) sử dụng **Spring Boot Backend** và **Firebase Cloud Messaging (FCM)**, cùng với việc tích hợp thành công trên ứng dụng **Android**.
+Dự án này là backend phục vụ cho ứng dụng di động, được thiết kế với khả năng mở rộng.
 
-## ✨ Thành quả dự án
+## 1. Firebase Cloud Messaging (FCM) Service
 
-Hai hình ảnh dưới đây là minh chứng trực quan cho sự hoạt động thành công của toàn bộ hệ thống.
+Phần này triển khai dịch vụ Gửi thông báo đẩy (Push Notifications) sử dụng **Spring Boot** và **Firebase Admin SDK**.
 
-### 1. Thông báo đẩy trên Android
+### Thành quả FCM
 
-Hình ảnh xác nhận thông báo được gửi từ API backend đã hiển thị chính xác trên thiết bị di động, bao gồm cả nội dung và hình ảnh.
+Hệ thống đã hoạt động thành công, chứng minh bằng hai kết quả sau:
 
-| Mô tả | Chi tiết |
-| :--- | :--- |
-| **Tiêu đề** | "Thông báo Mới từ Server" |
-| **Nội dung** | "Nội dung chi tiết của thông báo sẽ hiển thị trên thiết bị." |
-| **Hình ảnh** | Thông báo kèm theo hình ảnh minh họa (sử dụng trường `image` trong payload). |
+1.  **Thông báo Android:** Thông báo đẩy được gửi từ backend đã hiển thị chính xác trên thiết bị di động.
+    <img width="572" height="925" alt="Android" src="https://github.com/user-attachments/assets/0f4a0730-4e64-47d9-82ac-0eed072894c7" />
 
-<img width="572" height="925" alt="Android" src="https://github.com/user-attachments/assets/0f4a0730-4e64-47d9-82ac-0eed072894c7" />
+2.  **Báo cáo Firebase Console:** Ghi nhận thông báo đã được gửi thành công.
+    <img width="1347" height="717" alt="Screenshot 2025-10-23 141047" src="https://github.com/user-attachments/assets/9ab58c79-ebfc-4622-83b7-73d11f6d1ddd" />
 
-### 2. Dashboard Báo cáo Chiến dịch Firebase
+### API Endpoints
 
-Hình ảnh từ Firebase Console cho thấy các thông báo đã được gửi thành công và ghi nhận trạng thái **Completed** trong hệ thống theo dõi của Firebase Messaging.
-
-| Mô tả | Chi tiết |
-| :--- | :--- |
-| **Trạng thái** | `Completed` |
-| **Chỉ số** | Ghi nhận số lượng gửi (`Sends / Impressions: <1000`). |
-
-<img width="1347" height="717" alt="Screenshot 2025-10-23 141047" src="https://github.com/user-attachments/assets/9ab58c79-ebfc-4622-83b7-73d11f6d1ddd" />
+| Phương thức | Endpoint | Chức năng |
+| :--- | :--- | :--- |
+| `POST` | `/notification` | Gửi thông báo tới **Device Token** cụ thể. |
+| `POST` | `/notification/topic` | Gửi thông báo tới **Topic** đã đăng ký. |
 
 ---
 
-## 🛠️ Công nghệ sử dụng
+## 2. [Phần mở rộng khác]
 
-| Lĩnh vực | Công nghệ | Chi tiết |
-| :--- | :--- | :--- |
-| **Backend** | Spring Boot | Dùng cho RESTful API |
-| **Messaging** | Firebase Admin SDK | Phiên bản 9.2.0 |
-| **Build Tool** | Maven | |
-| **Ngôn ngữ** | Java 8 | |
+_**(Ví dụ: User Authentication, Data Persistence)**_
+
+## 3. [Phần mở rộng khác]
 
 ---
 
-## 🌐 API Endpoints
+## 🛠️ Công nghệ
 
-Dịch vụ cung cấp hai endpoint chính để gửi thông báo (Cổng mặc định: `9090`).
-
-| Phương thức | Endpoint | Mô tả |
-| :--- | :--- | :--- |
-| `POST` | `http://localhost:9090/notification` | Gửi thông báo tới một **Device Token** cụ thể. |
-| `POST` | `http://localhost:9090/notification/topic` | Gửi thông báo tới tất cả thiết bị đã **Subscribe** vào **Topic**. |
-
-### Cấu trúc Payload (`NotificationMessage`)
-
-```json
-{
-  "recipientToken": "DEVICE_TOKEN_HOẶC_TÊN_TOPIC",
-  "title": "Tiêu đề thông báo",
-  "body": "Nội dung chi tiết",
-  "image": "URL_HÌNH_ẢNH_TÙY_CHỌN",
-  "data": {
-    "key1": "value1",
-    "deeplink": "/app/settings"
-  }
-}
+* **Backend:** Spring Boot, Java 8
+* **Messaging:** Firebase Admin SDK
+* **Build:** Maven
