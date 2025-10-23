@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "326715964627",
+    "project_id": "javaspringboot-f42a8",
+    "storage_bucket": "javaspringboot-f42a8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326715964627:android:8dc63ae6feca299a32a826",
+        "android_client_info": {
+          "package_name": "com.example.app1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCR7gowYjBQeRRi6ncchOLyO3s8oJ0aK3k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
