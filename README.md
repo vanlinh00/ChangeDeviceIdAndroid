@@ -1,4 +1,4 @@
-# 🚀 Project Name - Spring Boot Backend
+# 🚀 Project Name - Android
 
 Dự án này là backend phục vụ cho ứng dụng di động, được thiết kế với khả năng mở rộng.
 
